@@ -81,30 +81,29 @@ def send_capsule():
 def receive_capsule():
     """ Implements the RECEIVE sequence """
     print("Receive process started")
+    print(GPIO.input(P3))
+    print(GPIO.input(P2))
+    print(GPIO.input(P1))
+    print(GPIO.input(P4))
+    
     
     # Wait for P3 to go LOW (Package Incoming)
     while GPIO.input(P3) == GPIO.LOW:
-        print("hello")
-        move_motor(GPIO.HIGH, S3)
-    
-    '''if GPIO.input(P3) == GPIO.LOW:
-        move_motor(GPIO.HIGH, S3)
-    else:
-        pass'''
+        pass
+
+    move_motor(GPIO.HIGH, S3)
     print("SUCTION HIGH - Capsule Picked")
     
     # Wait for P4 to go LOW
-    #while GPIO.input(P4) == GPIO.HIGH:
-     #   pass
-
-    # Move motor left until S1 goes LOW
-    if GPIO.input(P4) == GPIO.LOW:
-        move_motor(GPIO.LOW, S4)
-    else:
+    while GPIO.input(P4) == GPIO.LOW:
         pass
 
+    # Move motor left until S1 goes LOW
+    move_motor(GPIO.HIGH, S1)
+    print(GPIO.input(S1))
+    time.sleep(2)
     print("Package received")
-    move_motor(GPIO.HIGH, S2)
+    move_motor(GPIO.LOW, S2)
     print("System reset to pass-through state")
 
 def main():
