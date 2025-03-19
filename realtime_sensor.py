@@ -8,7 +8,7 @@ DIR = 19  # Direction pin
 ENA = 14  # Enable pin
 
 # Define GPIO pins for switches
-switch_pins = [23, 24, 25, 26]
+switch_pins = [23, 24, 25, 26, 4, 17, 27,22]
 
 # Set GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -35,7 +35,11 @@ def read_switches():
     S2 = GPIO.input(24)
     S3 = GPIO.input(25)
     S4 = GPIO.input(26)
-    print(f"S1: {S1}, S2: {S2}, S3: {S3}, S4: {S4}")
+    P1 = GPIO.input(4)
+    P2 = GPIO.input(17)
+    P3 = GPIO.input(27)
+    P4 = GPIO.input(22)
+    print(f"S1: {S1}, S2: {S2}, S3: {S3}, S4: {S4}, P1: {P1}, P2: {P2}, P3: {P3}, P4: {P4}")
 
 def step_motor(direction, steps=STEP_COUNT):
     """Moves the motor a given number of steps in the specified direction"""
